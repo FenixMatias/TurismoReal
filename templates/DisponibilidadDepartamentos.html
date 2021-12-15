@@ -1,0 +1,33 @@
+{% extends 'index_base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<section>
+    <div>
+      <center><h1>{{ title }} / {{ date_now }}</h1>
+    </div>
+ </section>
+<br>
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            {% for obj in object_list %}
+            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                <a href="{% url 'detalledepartamentosdisponibles' obj.dep_id %}">
+                    <figure class="block-4-image">
+                        {#{{ obj.dep_imagen_portada }}#}
+                        <a href="{{ obj.get_absolute_url }}"><img class="card-img-top" src="{{ obj.get_image }}" class="img-fluid"></a>
+                    </figure>
+                    
+                    <div class="bloc-4-text p-4"></div>
+                        <a><h3>Nombre: {{ obj.dep_nombre }}</h3></a>
+                        <p class="mb-0">Ubicación: {{ obj.dep_ubicacion }}<br>
+                            Capacidad: {{ obj.dep_capacidad}}<br>
+                            Zona: {{ obj.f_zona }}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
